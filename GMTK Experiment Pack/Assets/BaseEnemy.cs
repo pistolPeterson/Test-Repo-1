@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class BaseEnemy : MonoBehaviour
 {
@@ -26,12 +27,14 @@ public class BaseEnemy : MonoBehaviour
 
     private GameObject[] fakeTargets;
     private GameObject oneFakeTarget;
+
+    public static event Action OnEnemyAttck; 
    
     // Start is called before the first frame update
     void Start()
     {
         fakeTargets = GameObject.FindGameObjectsWithTag("FakeTarget");
-        oneFakeTarget = fakeTargets[Random.Range(0, fakeTargets.Length)];
+        oneFakeTarget = fakeTargets[UnityEngine.Random.Range(0, fakeTargets.Length)];
 
 
         time = 0; 
@@ -86,7 +89,9 @@ public class BaseEnemy : MonoBehaviour
             if(time > ((1/enemySO.attackSpeed) * 5))
             {
                 Debug.Log("Attack");
+                OnEnemyAttck?.Invoke();
                 FindObjectOfType<BaseHealth>().TakeDamage(15);
+                FindObjectOfType<BaseHealth>().GetEnemyPositionAndSendToUI(transform.position);
                 time = 0;
             }
            

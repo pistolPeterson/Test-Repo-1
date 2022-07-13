@@ -45,6 +45,8 @@ public class HeroKnight : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
+        var health = GetComponent<BaseHealth>();
+        if (health.isAlive == false) return;
         // Increase timer that controls attack combo
         m_timeSinceAttack += Time.deltaTime;
 
