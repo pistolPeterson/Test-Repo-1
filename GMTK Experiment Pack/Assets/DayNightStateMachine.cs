@@ -14,10 +14,12 @@ public class DayNightStateMachine : MonoBehaviour
         dayNightState = DayNightEnum.DAY;
     }
 
-
+    public DayNightEnum GetDayNightState()
+    { return dayNightState; }
 
     private void Update()
     {
+        Debug.Log(dayNightState);
         switch(dayNightState)
         {
             case DayNightEnum.DAY:

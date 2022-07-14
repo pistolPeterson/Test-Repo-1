@@ -39,6 +39,7 @@ public class DayNight : MonoBehaviour
         ppv = gameObject.GetComponent<Volume>();
         beginDay?.Invoke();
         isDay = true;
+        sunIsOn = true;
     }
 
     // Update is called once per frame
