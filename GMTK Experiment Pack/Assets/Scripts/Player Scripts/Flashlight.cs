@@ -36,7 +36,7 @@ public class Flashlight : MonoBehaviour
             if (dnsm.GetDayNightState() == DayNightEnum.DAY)
             {
                 //Debug.Log("its day time my dudes " + flashlightPower);
-                flashlightPower += 3.33f;
+                flashlightPower += 1.75f;
                 if (flashlightPower >= 100)
                     flashlightPower = 100;
             }

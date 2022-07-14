@@ -5,7 +5,7 @@ using UnityEngine;
 public class BaseMonsterSpawner : MonoBehaviour
 {
     [SerializeField] private float radius;
-    [SerializeField] private GameObject enemyPrefab;
+    [SerializeField] private GameObject[] enemyPrefab;
     [SerializeField] private int secondsPerEnemy = 1;
     [SerializeField] private bool isSpawning = false;
     [SerializeField] private int maxPerRound = 5; 
@@ -28,7 +28,8 @@ public class BaseMonsterSpawner : MonoBehaviour
 
         if (time > secondsPerEnemy)
         {
-            Instantiate(enemyPrefab, Random.insideUnitCircle.normalized * radius, Quaternion.identity);
+           var go= Instantiate(enemyPrefab[Random.Range(0, enemyPrefab.Length)], Random.insideUnitCircle.normalized * radius, Quaternion.identity);
+            go.transform.parent = transform;
             time =0;
             currentAmt++;
         }
